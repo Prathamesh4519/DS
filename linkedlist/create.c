@@ -15,7 +15,7 @@ void create(list* ptr) {
         int value;
         scanf("%d",&value);
         ptr->data=value;
-        printf("Do you want to continue?0/1\n");
+        printf("Do you want to continue?\n1.Yes\n");
         int choice;
         scanf("%d",&choice);
         if(choice==1) {
@@ -31,6 +31,13 @@ void create(list* ptr) {
             break;
         }
     }
+}
+void insert(list*ptr){
+    while (ptr!=NULL)
+        {
+            printf("%d",ptr->data);
+            ptr=ptr->next;
+        }
 }
 
 void print(list* ptr) {
