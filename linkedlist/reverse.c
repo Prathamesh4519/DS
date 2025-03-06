@@ -36,9 +36,7 @@ void create(list *ptr, int n)
 
        }
     
-    
-
-void print(list *ptr)
+       void print(list *ptr)
 {
     while (ptr != NULL)
     {
@@ -46,26 +44,7 @@ void print(list *ptr)
         ptr = ptr->next;
     }
 }
-list* delete(list*pt,int k,int n)
-{
-    list*head=pt;
-if(k==1){
-    list*let =pt;
-    pt = pt->next;
-    free(let);
-    return pt;}
-    else if (k>1&&k<=n)
-    {int i=0;
-        while (i!=k)
-        {
-            pt=pt->next;
-            i++;
-        }
-        list*let=pt->next;
-        pt->next=let->next;
-        free(let);
-        return head;
-    }
+void reverse(list*pt,int n){
     
 }
 
@@ -82,10 +61,7 @@ int main()
     scanf("%d", &n);
     create(head, n);
     print(head);
-    int k;
-    printf("Enter the node to be deleted");
-    scanf("%d",&k);
-    head=delete(head,k,n);
-    print(head);
-    return 0;
+    reverse(head,n);
+
+return 0;
 }
