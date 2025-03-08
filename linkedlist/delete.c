@@ -46,27 +46,46 @@ void print(list *ptr)
         ptr = ptr->next;
     }
 }
-list* delete(list*pt,int k,int n)
+list *delete (list * pt, int k, int n)
 {
-    list*head=pt;
-if(k==1){
-    list*let =pt;
-    pt = pt->next;
-    free(let);
-    return pt;}
-    else if (k>1&&k<=n)
-    {int i=0;
-        while (i!=k)
-        {
-            pt=pt->next;
-            i++;
-        }
-        list*let=pt->next;
-        pt->next=let->next;
+    if (pt == NULL || k < 1 || k > n)
+    {
+        printf("Invalid position.\n");
+        return pt;
+    }
+
+    list *head = pt;
+
+    // If deleting the first node
+    if (k == 1)
+    {
+        list *let = pt;
+        pt = pt->next;
         free(let);
+        return pt;
+    }
+
+    // Traverse to (k-1)th node
+    list *prev = NULL, *current = pt;
+    for (int i = 1; i < k; i++)
+    {
+        prev = current;
+        current = current->next;
+    }
+
+    // If deleting the last node
+    if (k == n)
+    {
+        prev->next = NULL;
+        free(current);
         return head;
     }
-    
+
+    // If deleting a middle node
+    prev->next = current->next;
+    free(current);
+
+    return head;
 }
 
 int main()
