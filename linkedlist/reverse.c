@@ -44,8 +44,12 @@ void create(list *ptr, int n)
         ptr = ptr->next;
     }
 }
-void reverse(list*pt,int n){
-    
+list *reverse(list*pt,int n){
+    list*temp= pt->next->next;
+   pt->next->next=pt;
+   pt->next=temp;
+    free(temp);
+return ;
 }
 
 int main()
@@ -61,7 +65,7 @@ int main()
     scanf("%d", &n);
     create(head, n);
     print(head);
-    reverse(head,n);
-
+   head= reverse(head,n);
+    print(head);
 return 0;
 }
