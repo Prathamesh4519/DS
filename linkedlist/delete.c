@@ -35,6 +35,21 @@ void create(list *ptr, int n)
     }
 
        }
+  int search(list*ptr,int val){
+        int a=1;
+        list*pt=ptr;
+        while(pt->data!=val){
+            pt=pt->next;
+             a++;
+        }
+        if(pt->data==val){
+            return a;
+        }
+        else{
+            printf("Wrong value entered.....:(");
+            return 0;
+        }
+    }
     
     
 
@@ -56,7 +71,7 @@ list *delete (list * pt, int k, int n)
 
     list *head = pt;
 
-    // If deleting the first node
+   
     if (k == 1)
     {
         list *let = pt;
@@ -65,7 +80,7 @@ list *delete (list * pt, int k, int n)
         return pt;
     }
 
-    // Traverse to (k-1)th node
+   
     list *prev = NULL, *current = pt;
     for (int i = 1; i < k; i++)
     {
@@ -73,7 +88,7 @@ list *delete (list * pt, int k, int n)
         current = current->next;
     }
 
-    // If deleting the last node
+   
     if (k == n)
     {
         prev->next = NULL;
@@ -81,11 +96,12 @@ list *delete (list * pt, int k, int n)
         return head;
     }
 
-    // If deleting a middle node
+   
     prev->next = current->next;
     free(current);
 
     return head;
+    
 }
 
 int main()
@@ -97,13 +113,17 @@ int main()
         exit(0);
     }
     int n;
-    printf("Enter the number of elements in linked list");
+    printf("Enter the number of elements in linked list \n");
     scanf("%d", &n);
     create(head, n);
     print(head);
-    int k;
-    printf("Enter the node to be deleted");
-    scanf("%d",&k);
+     int k;
+    // printf("Enter the node to be deleted");
+    // scanf("%d",&k);
+    int value;
+    printf("Enter the value to be deleted... \n");
+    scanf("%d",&value);
+   k=search(head,value);
     head=delete(head,k,n);
     print(head);
     return 0;
