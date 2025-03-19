@@ -8,36 +8,44 @@ typedef struct listnode list;
 
 
 
-void create(list* ptr) {
-   
-    while(1) {
+void create(list *ptr, int n)
+{
+    
+
+    while (n>0)
+    {
+
         printf("Enter the value\n");
         int value;
-        scanf("%d",&value);
-        ptr->data=value;
-        printf("Do you want to continue?\n1.Yes\n");
-        int choice;
-        scanf("%d",&choice);
-        if(choice==1) {
-            ptr->next=(list*)malloc(sizeof(list));
-            
-            if (ptr->next == NULL) {
-                printf("Memory allocation failed.\n");
-                exit(0);
-            }
-            ptr=ptr->next;
-        } else {
-            ptr->next=NULL;
-            break;
-        }
-    }
-}
-void insert(list*ptr){
-    while (ptr!=NULL)
+        scanf("%d", &value);
+        ptr->data = value;
+        if(n-1>0){
+        ptr->next = (list *)malloc(sizeof(list));
+
+        if (ptr->next == NULL)
         {
-            printf("%d",ptr->data);
-            ptr=ptr->next;
+            printf("Memory allocation failed.\n");
+            exit(0);
         }
+        ptr = ptr->next;}
+        else{
+            ptr->next=NULL;
+        }
+        n--;
+    }
+
+       }
+void insert(int n,list*ptr,int value){
+    int i=0;
+    list*node=(struct list*)malloc(sizeof(list));
+    while (i!=n-1)
+    {
+        ptr=ptr->next;
+        i++;
+    }
+    node->data=value;
+   node->next=ptr->next;
+   ptr->next=node;
 }
 
 void print(list* ptr) {
@@ -55,7 +63,10 @@ int main() {
         printf("Error,No space availed\n");
         exit(0);
     }
-    create(head);
+    int n;
+    printf("Enter the number of elements in linked list \n");
+    scanf("%d", &n);
+    create(head, n);
     print(head);
     return 0;
 }
